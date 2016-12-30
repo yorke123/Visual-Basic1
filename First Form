@@ -1,0 +1,205 @@
+Public Class Form1
+    Dim products As Double
+    Dim Symbol As String = "£ "
+    Dim DateAndTime As DataSetDateTime
+
+    Private Sub Basic(p1 As Object)
+        Throw New NotImplementedException
+    End Sub
+
+    Private Sub cbooutfit_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If cbooutfit.Text = String.Empty Then
+            MsgBox("Choose outfit style", MsgBoxStyle.Exclamation)
+        End If
+    End Sub
+
+    Private Sub cbomakeup_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If cbomakeup.Text = String.Empty Then
+            MsgBox("Choose outfit style", MsgBoxStyle.Exclamation)
+        End If
+    End Sub
+
+    Private Sub cbohairstyle_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If cbohairstyle.Text = String.Empty Then
+            MsgBox("Choose outfit style", MsgBoxStyle.Exclamation)
+        End If
+    End Sub
+
+    Private Sub cbosize_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If cbosize.Text = String.Empty Then
+            MsgBox("Choose outfit style", MsgBoxStyle.Exclamation)
+        End If
+    End Sub
+
+    Private Function Confirm() As Object
+        Throw New NotImplementedException
+    End Function
+
+    Private Sub cboproducts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboproducts.SelectedIndexChanged
+        'display a message box with details'
+        If cboproducts.SelectedItem = "makeup pack" Then
+            lblprice6.Text = Symbol & 59
+            Select Case MessageBox.Show("PACK OUT OF STOCK" & ControlChars.NewLine & "SELECT ANOTHER PACK", "MARVELLOUS MAKEOVER", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Case MsgBoxResult.Ok
+                    btncalculate.Enabled = False
+                Case Else
+                    btncalculate.Enabled = False
+                    lblprice6.Text = Nothing
+                    Label5.Visible = True
+            End Select
+        End If
+        If cboproducts.SelectedItem = "haircare pack" Then
+            lblprice6.Text = Symbol & 39
+            MessageBox.Show("containing the haircare products used for the makeover", "MARVELLOUS MAKEOVER", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            btncalculate.Enabled = False
+            lblprice6.Text = ("OUT OF STOCK")
+            Label5.Visible = False
+        End If
+
+    End Sub
+
+    Private Sub chkbasic_CheckedChanged(sender As Object, e As EventArgs) Handles chkbasic.CheckedChanged
+        'display a message box with details'
+        If chkbasic.Checked = True Then
+            MessageBox.Show("DETAILS: 2 unframed 12×16 prints", "MARVELLOUS MAKOVER", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+            lblprice1.Text = Symbol & 29
+        Else
+            lblprice1.Text = Nothing
+        End If
+    End Sub
+
+    Private Sub chksilver_CheckedChanged(sender As Object, e As EventArgs) Handles chksilver.CheckedChanged
+        'display a message box with details'
+        If chksilver.Checked = True Then
+            MessageBox.Show("PACK OUT OF STOCK", "MARVELLOUS MAKOVER", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation)
+            chksilver.Checked = False
+            lblprice2.Text = ""
+        Else
+            lblprice2.Text = Nothing
+        End If
+    End Sub
+
+    Private Sub chkgold_CheckedChanged(sender As Object, e As EventArgs) Handles chkgold.CheckedChanged
+        'display a message box with details'
+        If chkgold.Checked = True Then
+            MessageBox.Show("DETAILS: 2 framed 12×16 gloss prints, 2 framed 16×24 prints and 1 framed 24×30 print", "MARVELLOUS MAKOVER", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+            lblprice3.Text = Symbol & 189
+        Else
+            lblprice3.Text = Nothing
+        End If
+    End Sub
+
+    Private Sub optluxuryp_CheckedChanged_1(sender As Object, e As EventArgs) Handles optluxuryp.CheckedChanged
+        'display a message box with details'
+        If optluxuryp.Checked Then
+            MessageBox.Show("DETAILS: 5 hours:  makeover, 45 minute photograph session, three-course lunch and 3 framed photographs (8×12)", "MARVELLOUS MAKOVER", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+            lblprice5.Text = Symbol & 249
+            btncalculate.Enabled = True
+        Else
+            lblprice5.Text = Nothing
+        End If
+    End Sub
+
+    Private Sub sessionp_Enter(sender As Object, e As EventArgs) Handles sessionp.Enter
+
+    End Sub
+
+    Private Sub optbasicp_CheckedChanged_1(sender As Object, e As EventArgs) Handles optbasicp.CheckedChanged
+        'display a message box with details'
+        If optbasicp.Checked Then
+            MessageBox.Show("DETAILS: 3 hours: includes makeover and 15 minute photograph session and 2 photographs (8×12)", "MARVELLOUS MAKOVER", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+            lblprice4.Text = Symbol & 129
+            btncalculate.Enabled = True
+        Else
+            lblprice4.Text = Nothing
+        End If
+    End Sub
+
+    Private Sub btncalculate_Click_1(sender As Object, e As EventArgs) Handles btncalculate.Click
+
+
+        If cboproducts.Text = "MAKEUP PACK" Then
+            btncalculate.Enabled = False
+        End If
+        Dim dteResults As Date
+        dteResults = Now
+
+        Dim view As String 'to show all photograph package, session package and the product chosen'
+        Dim basic As Decimal 'for the price of the basic photograph package'
+        Dim gold As Decimal 'for the price of the gold photograph package'
+        Dim basicpack As Decimal 'price of session basic package'
+        Dim luxury As Decimal 'price of session luxury package'
+        Dim haircarepack As Decimal 'price of products'
+        Dim Overall As Decimal 'total price'
+        Dim display As String 'summary of the calculation
+        view = ""
+
+        If cbooutfit.Text = "" Then
+            MsgBox("Must select Outfit style", MsgBoxStyle.Exclamation)
+        ElseIf cbomakeup.Text = "" Then
+            MsgBox("Must select make-up style", MsgBoxStyle.Exclamation)
+        ElseIf cbohairstyle.Text = "" Then
+            MsgBox("Must select hairstyle", MsgBoxStyle.Exclamation)
+        ElseIf cbosize.Text = "" Then
+            MsgBox("Must select clothing size", MsgBoxStyle.Exclamation)
+        ElseIf cboproducts.Text = "" Then
+            MsgBox("Must select products", MsgBoxStyle.Exclamation)
+
+        Else
+            'Adding photograph packages to the list'
+            If chkbasic.Checked = True Then
+                basic = 29
+                view &= chkbasic.Text & ControlChars.Tab & ControlChars.Tab & Symbol & basic & ".00" & ControlChars.NewLine
+                view &= ""
+            End If
+            If chkgold.Checked = True Then
+                gold = 189
+                view &= chkgold.Text & ControlChars.Tab & ControlChars.Tab & Symbol & gold & ".00" & ControlChars.NewLine
+                view &= ""
+            End If
+
+            'Adding the sessions packages to the list'
+            If optbasicp.Checked = True Then
+                basicpack = 129
+                view &= optbasicp.Text & ControlChars.Tab & ControlChars.Tab & Symbol & basicpack & ".00" & ControlChars.NewLine
+                view &= ""
+            End If
+            If optluxuryp.Checked = True Then
+                luxury = 249
+                view &= optluxuryp.Text & ControlChars.Tab & ControlChars.Tab & Symbol & luxury & ".00" & ControlChars.NewLine
+                view &= ""
+            End If
+            If cboproducts.Text = "haircare pack" Then
+                haircarepack = 39
+                view &= cboproducts.Text & ControlChars.Tab & ControlChars.Tab & Symbol & haircarepack & ".00" & ControlChars.NewLine
+
+            End If
+            'Summation of the Overall cost'
+            Overall = basic + gold + basicpack + luxury + haircarepack + products
+
+
+
+
+            'Summarised item selected by the client'
+            display = "Outfit Style" & ControlChars.Tab & ControlChars.Tab & cbooutfit.Text & ControlChars.NewLine & _
+                      "Make-up Style" & ControlChars.Tab & ControlChars.Tab & cbomakeup.Text & ControlChars.NewLine & _
+                      "Hairstyle" & ControlChars.Tab & ControlChars.Tab & ControlChars.Tab & cbohairstyle.Text & ControlChars.NewLine & _
+                      "Clothing Size" & ControlChars.Tab & ControlChars.Tab & cbosize.Text & ControlChars.NewLine & ControlChars.NewLine & view & ControlChars.NewLine & _
+                      "--------------------------------------------" & ControlChars.NewLine & "TOTAL" & ControlChars.Tab & ControlChars.Tab & ControlChars.Tab & "£ " & Overall & ".00" & ControlChars.Tab
+
+
+            Select Case MessageBox.Show("Welcome to Marvellous Makeovers" & ControlChars.NewLine & ControlChars.NewLine & _
+                               dteResults & ControlChars.Tab & ControlChars.NewLine & ControlChars.NewLine & _
+                             display, "MARVELLOUS MAKEOVERS", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+                Case MsgBoxResult.Yes ' when customers confirm their choices'
+                    Me.Hide()
+                    Form2.Show()
+                Case MsgBoxResult.No 'when customer want to increase/decrease their selections price()'
+
+            End Select
+            Exit Sub
+        End If
+    End Sub
+End Class
