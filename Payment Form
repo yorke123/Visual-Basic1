@@ -1,0 +1,72 @@
+Public Class Form2
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnconfirm.Click
+        If Watermark1.Text = String.Empty Then
+            MsgBox("Please input cardnumber", MsgBoxStyle.Exclamation)
+        ElseIf Watermark2.Text = String.Empty Then
+            MsgBox("Please your HouseNumber", MsgBoxStyle.Exclamation)
+        ElseIf Watermark3.Text = String.Empty Then
+            MsgBox("Please your Country", MsgBoxStyle.Exclamation)
+        ElseIf Watermark4.Text = String.Empty Then
+            MsgBox("Please input StreetName", MsgBoxStyle.Exclamation)
+        ElseIf Watermark5.Text = String.Empty Then
+            MsgBox("Please input Town/City", MsgBoxStyle.Exclamation)
+        ElseIf Watermark6.Text = String.Empty Then
+            MsgBox("Please input PostCode", MsgBoxStyle.Exclamation)
+        ElseIf Watermark7.Text = String.Empty Then
+            MsgBox("Please input Phone no.", MsgBoxStyle.Exclamation)
+        Else
+            MsgBox("Thanks for shopping with US", MsgBoxStyle.Information)
+            Me.Close()
+            Form1.Close()
+        End If
+    End Sub
+
+    Private Sub Watermark1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Watermark1.KeyPress
+        If e.KeyChar = " " Then
+            e.Handled = True
+        ElseIf Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Watermark7_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Watermark7.KeyPress
+        If e.KeyChar = " " Then
+            e.Handled = True
+        ElseIf Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Watermark6_KeyPress1(sender As Object, e As KeyPressEventArgs) Handles Watermark6.KeyPress
+        If e.KeyChar = " " Then
+            e.Handled = True
+        ElseIf Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Watermark4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Watermark4.KeyPress
+        If e.KeyChar = " " Then
+            e.Handled = True
+        ElseIf Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Watermark3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Watermark3.KeyPress
+        If e.KeyChar = " " Then
+            e.Handled = True
+        ElseIf Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Watermark5_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Watermark5.KeyPress
+        If e.KeyChar = " " Then
+            e.Handled = True
+        ElseIf Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+End Class
